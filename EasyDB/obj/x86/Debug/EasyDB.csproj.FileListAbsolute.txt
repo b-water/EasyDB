@@ -1,0 +1,9 @@
+D:\Entwicklung\EasyDB\EasyDB\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Entwicklung\EasyDB\EasyDB\obj\x86\Debug\EasyDB.Properties.Resources.resources
+D:\Entwicklung\EasyDB\EasyDB\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Entwicklung\EasyDB\EasyDB\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Entwicklung\EasyDB\EasyDB\obj\x86\Debug\EasyDB.MainWindow.resources
+D:\Entwicklung\EasyDB\EasyDB\bin\Debug\EasyDB.exe
+D:\Entwicklung\EasyDB\EasyDB\bin\Debug\EasyDB.pdb
+D:\Entwicklung\EasyDB\EasyDB\obj\x86\Debug\EasyDB.exe
+D:\Entwicklung\EasyDB\EasyDB\obj\x86\Debug\EasyDB.pdb
