@@ -51,6 +51,7 @@
             this.activateAll = new System.Windows.Forms.Button();
             this.importFiles = new System.Windows.Forms.Button();
             this.start = new System.Windows.Forms.Button();
+            this.runBatches = new System.Windows.Forms.Button();
             this.dbGroup.SuspendLayout();
             this.fileGroup.SuspendLayout();
             this.SuspendLayout();
@@ -202,6 +203,7 @@
             // 
             // host
             // 
+            this.host.BackColor = System.Drawing.Color.White;
             this.host.Location = new System.Drawing.Point(72, 47);
             this.host.Name = "host";
             this.host.Size = new System.Drawing.Size(190, 20);
@@ -266,19 +268,29 @@
             // 
             // start
             // 
-            this.start.Location = new System.Drawing.Point(354, 209);
+            this.start.Location = new System.Drawing.Point(354, 207);
             this.start.Name = "start";
-            this.start.Size = new System.Drawing.Size(85, 25);
+            this.start.Size = new System.Drawing.Size(128, 25);
             this.start.TabIndex = 6;
-            this.start.Text = "Einspielen";
+            this.start.Text = "Batches erstellen";
             this.start.UseVisualStyleBackColor = true;
             this.start.Click += new System.EventHandler(this.start_Click);
+            // 
+            // runBatches
+            // 
+            this.runBatches.Location = new System.Drawing.Point(488, 208);
+            this.runBatches.Name = "runBatches";
+            this.runBatches.Size = new System.Drawing.Size(131, 25);
+            this.runBatches.TabIndex = 7;
+            this.runBatches.Text = "Ausführen";
+            this.runBatches.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 244);
+            this.ClientSize = new System.Drawing.Size(631, 240);
+            this.Controls.Add(this.runBatches);
             this.Controls.Add(this.start);
             this.Controls.Add(this.fileGroup);
             this.Controls.Add(this.dbGroup);
@@ -297,7 +309,6 @@
 
         #endregion
 
-        private System.Windows.Forms.HelpProvider helpProvider;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.CheckedListBox checkedListBox;
         private System.Windows.Forms.GroupBox dbGroup;
@@ -320,6 +331,7 @@
         private System.Windows.Forms.TextBox name;
         private System.Windows.Forms.Button saveConnection;
         private System.Windows.Forms.Button newConnection;
+        private System.Windows.Forms.Button runBatches;
 
     }
 }

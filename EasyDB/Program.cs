@@ -29,9 +29,9 @@ namespace EasyDB
             //process.StartInfo.UseShellExecute = false;
             //process.StartInfo.RedirectStandardOutput = true;
             //process.StartInfo.CreateNoWindow = false;
-            //process.StartInfo.FileName = "C:\\xampp\\mysql\\bin\\mysql.exe";
-            //process.StartInfo.Arguments = String.Format("-h{0} -u{1} -p{2} -D{3} <{4}", "127.0.0.1", "dbadmin", "1234", "deliciousred", " C:\\dr.sql");
-
+            //process.StartInfo.FileName = @"C:\xampp\mysql\bin\mysql.exe";
+            //process.StartInfo.Arguments = string.Format(@" -h {0} -u {1} -p{2} -D {3} < {4}", "127.0.0.1", "dbadmin", "1234", "dmmmmmeliciousred", " C:\\dr.sql");
+            //process.StartInfo.Arguments = String.Format(" -h {0} -u {1} -p{2} -e 'show databases;'", "127.0.0.1", "dbadmin", "1234", "dmmmmmeliciousred");
             //DateTime timestamp = DateTime.Now;
             //timestamp.ToString("yyyy");
 
@@ -45,9 +45,9 @@ namespace EasyDB
             //process.BeginOutputReadLine();
             //process.WaitForExit();
 
-            Process ie = new Process();
-            ie.StartInfo.FileName = "paint.exe";
-            ie.Start();
+            //Process ie = new Process();
+            //ie.StartInfo.FileName = "paint.exe";
+            //ie.Start();
 
 
 

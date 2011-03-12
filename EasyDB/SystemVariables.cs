@@ -18,10 +18,11 @@ namespace EasyDB
 
         ProgramFile ProgramFile = ProgramFile.Instance;
 
-        
-
         private SystemVariables() { }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public static SystemVariables Instance
         {
               get 
@@ -34,7 +35,10 @@ namespace EasyDB
               }
         }
 
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public bool init()
         {
             foreach (DictionaryEntry entry in variables)
@@ -83,10 +87,11 @@ namespace EasyDB
             // if no roaming dir is found create one
             if (this.foundEasyDBAppDataPath.Equals(false))
             {
-                this.EasyDBAppDataPath = this.appDataPath + "\\EasyDB";
+                this.EasyDBAppDataPath = this.appDataPath + @"\EasyDB";
                 Directory.CreateDirectory(this.EasyDBAppDataPath);
-                Directory.CreateDirectory(this.EasyDBAppDataPath + "\\connections");
-                Directory.CreateDirectory(this.EasyDBAppDataPath + "\\debug");
+                Directory.CreateDirectory(this.EasyDBAppDataPath + @"\connections");
+                Directory.CreateDirectory(this.EasyDBAppDataPath + @"\debug");
+                Directory.CreateDirectory(this.EasyDBAppDataPath + @"\batches");
                 this.foundEasyDBAppDataPath = true;
             }
 
@@ -95,7 +100,7 @@ namespace EasyDB
             {
                 try
                 {
-                    Environment.SetEnvironmentVariable("MySQL", "C:\\xampp\\mysql\\bin\\mysql.exe");
+                    Environment.SetEnvironmentVariable("MySQL", @"C:\xampp\mysql\bin\mysql.exe");
                 }
                 catch (Exception e)
                 {
@@ -112,26 +117,46 @@ namespace EasyDB
             return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public bool createAppDataDirectory()
         {
             return true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string getEasyDBAppDataPath()
         {
             return this.EasyDBAppDataPath;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string getAppDataPath()
         {
             return this.appDataPath;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string getMySQLExePath()
         {
             return this.mySQLExePath;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IDictionary getVariables()
         {
             return this.variables;

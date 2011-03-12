@@ -127,6 +127,47 @@ namespace EasyDB
         private void start_Click(object sender, EventArgs e)
         {
 
+            if (host.Text.Equals("") || user.Text.Equals("") || password.Text.Equals("") ||
+                 database.Text.Equals(""))
+            {
+                MessageBox.Show("Bitte füllen Sie alle Angaben zur Datenbank Verbindung aus!");
+            }
+            else
+            {
+                Batch batch = Batch.Instance;
+                batch.setHost(host.Text.ToString());
+                batch.setUser(user.Text.ToString());
+                batch.setPassword(password.Text.ToString());
+                batch.setDatabase(database.Text.ToString());
+
+                if (!this.checkedListBox.Items.Count.Equals(0))
+                {
+                    Hashtable sqlFiles = ProgramFile.GetSQLHashtable();
+
+
+                    for (int i = 0; i <= this.checkedListBox.Items.Count - 1; i++)
+                    {
+                        if (this.checkedListBox.GetItemChecked(i))
+                        {
+                            //Console.WriteLine(this.checkedListBox.Items[i]);
+                            foreach (DictionaryEntry file in sqlFiles)
+                            {
+                                if (file.Value.ToString().Equals(this.checkedListBox.Items[i].ToString()))
+                                {
+                                    batch.create(file.Key.ToString(), file.Value.ToString(), i);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Es sind keine Dateien ausgewählt!");
+                }
+
+            }
+
         }
 
         private void newConnection_Click(object sender, EventArgs e)
@@ -194,7 +235,5 @@ namespace EasyDB
                 countConnections++;
             }
         }
-
-
     }
 }

@@ -34,9 +34,9 @@ namespace EasyDB
 
         public void save(string host, string user, string password, string database, string name)
         {
-            if (!File.Exists(this.SystemVariables.getEasyDBAppDataPath() + "\\connections\\" + name + ".xml"))
+            if (!File.Exists(this.SystemVariables.getEasyDBAppDataPath() + @"\connections\\" + name + ".xml"))
             {
-                string file = this.SystemVariables.getEasyDBAppDataPath() + "\\connections\\" + name + ".xml";
+                string file = this.SystemVariables.getEasyDBAppDataPath() + @"\connections\\" + name + ".xml";
                 XmlTextWriter xml = new XmlTextWriter(file, null);
 
                 xml.Formatting = Formatting.Indented;
@@ -81,7 +81,7 @@ namespace EasyDB
 
         public void loadAll()
         {
-            ProgramFile.ReadDir(this.SystemVariables.getEasyDBAppDataPath() + "\\connections", true, "XML", true);
+            ProgramFile.ReadDir(this.SystemVariables.getEasyDBAppDataPath() + @"\connections", true, "XML", true);
             this.connections = ProgramFile.GetXMLHashtable();
         }
 
