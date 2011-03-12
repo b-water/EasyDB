@@ -28,7 +28,12 @@ namespace EasyDB
         {
              this.batchDirectory = SystemVariables.getEasyDBAppDataPath() + @"\batches\";
              this.mysqlEXE = SystemVariables.getMySQLExePath();
-             this.clear();
+
+             string[] batchFiles = Directory.GetFiles(this.batchDirectory);
+             foreach (string batch in batchFiles)
+             {
+                 File.Delete(batch);
+             }
         }
 
         /// <summary>
@@ -69,17 +74,6 @@ namespace EasyDB
             {
                 return true;
             }
-        }
-
-        private void clear()
-        {
-            string[] batchFiles = Directory.GetFiles(this.batchDirectory);
-            foreach (string batch in batchFiles)
-            {
-                FileInfo fileInfo = new FileInfo(batch);
-                fileInfo.Delete();
-            }
-
         }
 
         /// <summary>
