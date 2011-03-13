@@ -3,31 +3,33 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.IO;
-using System.Windows.Forms;
 
 namespace EasyDB
 {
     class Batch
     {
-        private static Batch instance;
+        // the instance
         
-        private string host = null;
-        private string user = null;
-        private string password = null;
-        private string database = null;
+        // mysql database configuration
+        private string _host = null;
+        private string _user = null;
+        private string _password = null;
+        private string _database = null;
 
+        // batch folder in roaming directory
         private string batchDirectory = null;
-        private string mysqlEXE = null;
+        // the mysql exe
+        private string mysql = null;
 
         SystemVariables SystemVariables = SystemVariables.Instance;
 
         /// <summary>
         /// The Constructor
         /// </summary>
-        private Batch () 
+        public Batch () 
         {
              this.batchDirectory = SystemVariables.getEasyDBAppDataPath() + @"\batches\";
-             this.mysqlEXE = SystemVariables.getMySQLExePath();
+             this.mysql = SystemVariables.getMySQLExePath();
 
              string[] batchFiles = Directory.GetFiles(this.batchDirectory);
              foreach (string batch in batchFiles)
@@ -35,22 +37,6 @@ namespace EasyDB
                  File.Delete(batch);
              }
         }
-
-        /// <summary>
-        /// Create or returns an Instance
-        /// </summary>
-        public static Batch Instance
-        {
-              get 
-              {
-                 if (instance == null)
-                 {
-                    instance = new Batch();
-                 }
-                 return instance;
-              }
-        }
-
 
         public bool create(string sqlFile, string name, int index)
         {
@@ -62,12 +48,12 @@ namespace EasyDB
 
             // write the data into the batch file
             StreamWriter streamWriter = fileInfo.CreateText();
-            streamWriter.Write(this.mysqlEXE + string.Format(@" -h {0} -u {1} -p{2} -D {3} < {4}", this.host, this.user, this.password, this.database, sqlFile));
+            streamWriter.Write(this.mysql + string.Format(@" -h {0} -u {1} -p{2} -D {3} < {4}", this.host, this.user, this.password, this.database, sqlFile));
             streamWriter.Close();
 
             if (!File.Exists(batchFile))
             {
-                MessageBox.Show("Die Batch Datei für den SQL Dump \"" + sqlFile + "\" konnte nicht erstellt werden!");
+                throw new BatchException("(#1) : Coud not create Batch File!");
                 return false;
             }
             else
@@ -76,76 +62,70 @@ namespace EasyDB
             }
         }
 
+
         /// <summary>
-        /// 
+        /// sets or returns the host
         /// </summary>
-        /// <param name="value"></param>
-        public void setHost(string value)
+        public string host
         {
-            this.host = value;
+            get
+            {
+                return this._host;
+            }
+
+            set
+            {
+                this._host = value;
+            }
         }
 
         /// <summary>
-        /// 
+        /// sets or returns the user
         /// </summary>
-        /// <param name="value"></param>
-        public void setUser(string value)
+        public string user
         {
-            this.user = value;
+            get
+            {
+                return this._user;
+            }
+
+            set
+            {
+                this._user = value;
+            }
         }
 
         /// <summary>
-        /// 
+        /// sets or returns the password
         /// </summary>
-        /// <param name="value"></param>
-        public void setPassword(string value)
+        public string password
         {
-            this.password = value;
+            get
+            {
+                return this._password;
+            }
+
+            set
+            {
+                this._password = value;
+            }
         }
 
         /// <summary>
-        /// 
+        /// sets or retuns the database
         /// </summary>
-        /// <param name="value"></param>
-        public void setDatabase(string value)
+        public string database
         {
-            this.database = value;
+            get
+            {
+                return this._database;
+            }
+
+            set
+            {
+                this._database = value;
+            }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public string getHost()
-        {
-            return this.host;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public string getUser()
-        {
-            return this.user;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public string getPassword()
-        {
-            return this.password;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public string getDatabase()
-        {
-            return this.database;
-        }
     }
 }

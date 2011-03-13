@@ -124,7 +124,7 @@ namespace EasyDB
             this.deleteFiles.Enabled = false;
         }
 
-        private void start_Click(object sender, EventArgs e)
+        private void create_Click(object sender, EventArgs e)
         {
 
             if (host.Text.Equals("") || user.Text.Equals("") || password.Text.Equals("") ||
@@ -134,11 +134,11 @@ namespace EasyDB
             }
             else
             {
-                Batch batch = Batch.Instance;
-                batch.setHost(host.Text.ToString());
-                batch.setUser(user.Text.ToString());
-                batch.setPassword(password.Text.ToString());
-                batch.setDatabase(database.Text.ToString());
+                Batch batch = new Batch();
+                batch.host = host.Text.ToString();
+                batch.user = user.Text.ToString();
+                batch.password = password.Text.ToString();
+                batch.database = database.Text.ToString();
 
                 if (!this.checkedListBox.Items.Count.Equals(0))
                 {
@@ -234,6 +234,12 @@ namespace EasyDB
                 this.connections.Items.Insert(countConnections, connection.Value);
                 countConnections++;
             }
+        }
+
+        private void configurationOpen_Click(object sender, EventArgs e)
+        {
+            ConfigWindow configWindow = new ConfigWindow();
+            configWindow.Show();
         }
     }
 }

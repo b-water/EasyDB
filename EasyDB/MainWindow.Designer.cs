@@ -50,10 +50,17 @@
             this.deactivateAll = new System.Windows.Forms.Button();
             this.activateAll = new System.Windows.Forms.Button();
             this.importFiles = new System.Windows.Forms.Button();
-            this.start = new System.Windows.Forms.Button();
-            this.runBatches = new System.Windows.Forms.Button();
+            this.create = new System.Windows.Forms.Button();
+            this.run = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.configurationOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.progressBarLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.dbGroup.SuspendLayout();
             this.fileGroup.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkedListBox
@@ -83,7 +90,7 @@
             this.dbGroup.Controls.Add(this.user);
             this.dbGroup.Controls.Add(this.label1);
             this.dbGroup.Controls.Add(this.host);
-            this.dbGroup.Location = new System.Drawing.Point(354, 12);
+            this.dbGroup.Location = new System.Drawing.Point(354, 32);
             this.dbGroup.Name = "dbGroup";
             this.dbGroup.Size = new System.Drawing.Size(268, 191);
             this.dbGroup.TabIndex = 4;
@@ -217,7 +224,7 @@
             this.fileGroup.Controls.Add(this.activateAll);
             this.fileGroup.Controls.Add(this.importFiles);
             this.fileGroup.Controls.Add(this.checkedListBox);
-            this.fileGroup.Location = new System.Drawing.Point(12, 12);
+            this.fileGroup.Location = new System.Drawing.Point(12, 32);
             this.fileGroup.Name = "fileGroup";
             this.fileGroup.Size = new System.Drawing.Size(322, 222);
             this.fileGroup.TabIndex = 5;
@@ -226,6 +233,7 @@
             // 
             // deleteFiles
             // 
+            this.deleteFiles.Enabled = false;
             this.deleteFiles.Location = new System.Drawing.Point(249, 189);
             this.deleteFiles.Name = "deleteFiles";
             this.deleteFiles.Size = new System.Drawing.Size(67, 23);
@@ -266,44 +274,96 @@
             this.importFiles.UseVisualStyleBackColor = true;
             this.importFiles.Click += new System.EventHandler(this.importFiles_Click);
             // 
-            // start
+            // create
             // 
-            this.start.Location = new System.Drawing.Point(354, 207);
-            this.start.Name = "start";
-            this.start.Size = new System.Drawing.Size(128, 25);
-            this.start.TabIndex = 6;
-            this.start.Text = "Batches erstellen";
-            this.start.UseVisualStyleBackColor = true;
-            this.start.Click += new System.EventHandler(this.start_Click);
+            this.create.Location = new System.Drawing.Point(354, 227);
+            this.create.Name = "create";
+            this.create.Size = new System.Drawing.Size(128, 25);
+            this.create.TabIndex = 6;
+            this.create.Text = "Erstellen";
+            this.create.UseVisualStyleBackColor = true;
+            this.create.Click += new System.EventHandler(this.create_Click);
             // 
-            // runBatches
+            // run
             // 
-            this.runBatches.Location = new System.Drawing.Point(488, 208);
-            this.runBatches.Name = "runBatches";
-            this.runBatches.Size = new System.Drawing.Size(131, 25);
-            this.runBatches.TabIndex = 7;
-            this.runBatches.Text = "Ausführen";
-            this.runBatches.UseVisualStyleBackColor = true;
+            this.run.Enabled = false;
+            this.run.Location = new System.Drawing.Point(488, 228);
+            this.run.Name = "run";
+            this.run.Size = new System.Drawing.Size(131, 25);
+            this.run.TabIndex = 7;
+            this.run.Text = "Ausführen";
+            this.run.UseVisualStyleBackColor = true;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configurationOpen});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(631, 24);
+            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // configurationOpen
+            // 
+            this.configurationOpen.Name = "configurationOpen";
+            this.configurationOpen.Size = new System.Drawing.Size(90, 20);
+            this.configurationOpen.Text = "Einstellungen";
+            this.configurationOpen.Click += new System.EventHandler(this.configurationOpen_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.progressBarLabel,
+            this.progressBar});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 266);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(631, 22);
+            this.statusStrip1.TabIndex = 9;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // progressBarLabel
+            // 
+            this.progressBarLabel.Name = "progressBarLabel";
+            this.progressBarLabel.Size = new System.Drawing.Size(61, 17);
+            this.progressBarLabel.Text = "Fortschritt";
+            this.progressBarLabel.Visible = false;
+            // 
+            // progressBar
+            // 
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(100, 16);
+            this.progressBar.Visible = false;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 240);
-            this.Controls.Add(this.runBatches);
-            this.Controls.Add(this.start);
+            this.ClientSize = new System.Drawing.Size(631, 288);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.run);
+            this.Controls.Add(this.create);
             this.Controls.Add(this.fileGroup);
             this.Controls.Add(this.dbGroup);
+            this.Controls.Add(this.menuStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "MainWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EasyDB";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.dbGroup.ResumeLayout(false);
             this.dbGroup.PerformLayout();
             this.fileGroup.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -326,12 +386,17 @@
         private System.Windows.Forms.Button deactivateAll;
         private System.Windows.Forms.Button activateAll;
         private System.Windows.Forms.Button deleteFiles;
-        private System.Windows.Forms.Button start;
+        private System.Windows.Forms.Button create;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox name;
         private System.Windows.Forms.Button saveConnection;
         private System.Windows.Forms.Button newConnection;
-        private System.Windows.Forms.Button runBatches;
+        private System.Windows.Forms.Button run;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem configurationOpen;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel progressBarLabel;
+        private System.Windows.Forms.ToolStripProgressBar progressBar;
 
     }
 }

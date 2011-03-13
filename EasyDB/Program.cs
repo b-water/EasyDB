@@ -18,9 +18,24 @@ namespace EasyDB
         [STAThread]
         static void Main()
         {
-            SystemVariables SystemVariables = SystemVariables.Instance;
+            //SystemVariables SystemVariables = SystemVariables.Instance;
 
-            SystemVariables.init();
+            //SystemVariables.init();
+
+            Configuration config = Configuration.Instance;
+            config.set("Roaming", System.Environment.GetEnvironmentVariable("APPDATA"));
+            config.set("Application", "EasyDB");
+            config.set("Connection Directory", "connection");
+            config.set("Batch Directory","batch");
+
+            string[] subFolders = new String[2];
+            subFolders[0] = config.get("Batch Directory");
+            subFolders[1] = config.get("Connection Directory");
+
+            Roaming roaming = new Roaming();
+            roaming.pathToRoamingDirectory = config.get("Roaming");
+            roaming.folderName = config.get("Application");
+            config.set("Application Directory",roaming.createIfNotExists(subFolders));
 
             //System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("MySQL"), " --user=dbadmin --password=1234 testdb < D:\\dumps\\movie.sql");
             //System.Diagnostics.Process.EnterDebugMode();
