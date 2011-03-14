@@ -17,20 +17,17 @@ namespace EasyDB
         private string _database = null;
 
         // batch folder in roaming directory
-        private string batchDirectory = null;
+        private string _batchDirectory = null;
         // the mysql exe
-        private string mysql = null;
+        private string _mysql = null;
 
-        SystemVariables SystemVariables = SystemVariables.Instance;
 
         /// <summary>
         /// The Constructor
         /// </summary>
         public Batch () 
         {
-             this.batchDirectory = SystemVariables.getEasyDBAppDataPath() + @"\batches\";
-             this.mysql = SystemVariables.getMySQLExePath();
-
+            // alle bisherigen batch dateien löschen
              string[] batchFiles = Directory.GetFiles(this.batchDirectory);
              foreach (string batch in batchFiles)
              {
@@ -59,6 +56,38 @@ namespace EasyDB
             else
             {
                 return true;
+            }
+        }
+
+        /// <summary>
+        /// Setzt oder gibt den Pfad zur mysql.exe zurück
+        /// </summary>
+        public string mysql
+        {
+            get
+            {
+                return this._mysql;
+            }
+
+            set
+            {
+                this._mysql = value;
+            }
+        }
+
+        /// <summary>
+        /// setzt oder gibt den Pfad für den Ordner der Batches zurück
+        /// </summary>
+        public string batchDirectory
+        {
+            get
+            {
+                return this._batchDirectory;
+            }
+
+            set
+            {
+                this._batchDirectory = value;
             }
         }
 

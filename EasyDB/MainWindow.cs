@@ -14,6 +14,7 @@ namespace EasyDB
 
         ProgramFile ProgramFile = ProgramFile.Instance;
         Connection Connection = Connection.Instance;
+        Configuration config = Configuration.Instance;
 
         private void label3_Click(object sender, EventArgs e) { }
         private void label2_Click_1(object sender, EventArgs e) { }
@@ -25,7 +26,7 @@ namespace EasyDB
         private void user_TextChanged(object sender, EventArgs e) { }
         private void password_TextChanged(object sender, EventArgs e) { }
         private void name_TextChanged(object sender, EventArgs e) { }
-
+        private void statusStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e) { }
 
         public MainWindow()
         {
@@ -139,6 +140,8 @@ namespace EasyDB
                 batch.user = user.Text.ToString();
                 batch.password = password.Text.ToString();
                 batch.database = database.Text.ToString();
+                batch.mysql = config.get("MySQL");
+                batch.batchDirectory = config.get("Batch Directory");
 
                 if (!this.checkedListBox.Items.Count.Equals(0))
                 {
@@ -236,10 +239,6 @@ namespace EasyDB
             }
         }
 
-        private void configurationOpen_Click(object sender, EventArgs e)
-        {
-            ConfigWindow configWindow = new ConfigWindow();
-            configWindow.Show();
-        }
+
     }
 }

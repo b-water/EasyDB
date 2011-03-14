@@ -52,15 +52,13 @@
             this.importFiles = new System.Windows.Forms.Button();
             this.create = new System.Windows.Forms.Button();
             this.run = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.configurationOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.progressBarLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.mysqlNotFoundLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.dbGroup.SuspendLayout();
             this.fileGroup.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkedListBox
@@ -90,7 +88,7 @@
             this.dbGroup.Controls.Add(this.user);
             this.dbGroup.Controls.Add(this.label1);
             this.dbGroup.Controls.Add(this.host);
-            this.dbGroup.Location = new System.Drawing.Point(354, 32);
+            this.dbGroup.Location = new System.Drawing.Point(354, 11);
             this.dbGroup.Name = "dbGroup";
             this.dbGroup.Size = new System.Drawing.Size(268, 191);
             this.dbGroup.TabIndex = 4;
@@ -224,7 +222,7 @@
             this.fileGroup.Controls.Add(this.activateAll);
             this.fileGroup.Controls.Add(this.importFiles);
             this.fileGroup.Controls.Add(this.checkedListBox);
-            this.fileGroup.Location = new System.Drawing.Point(12, 32);
+            this.fileGroup.Location = new System.Drawing.Point(12, 11);
             this.fileGroup.Name = "fileGroup";
             this.fileGroup.Size = new System.Drawing.Size(322, 222);
             this.fileGroup.TabIndex = 5;
@@ -276,7 +274,7 @@
             // 
             // create
             // 
-            this.create.Location = new System.Drawing.Point(354, 227);
+            this.create.Location = new System.Drawing.Point(354, 206);
             this.create.Name = "create";
             this.create.Size = new System.Drawing.Size(128, 25);
             this.create.TabIndex = 6;
@@ -287,40 +285,25 @@
             // run
             // 
             this.run.Enabled = false;
-            this.run.Location = new System.Drawing.Point(488, 228);
+            this.run.Location = new System.Drawing.Point(488, 207);
             this.run.Name = "run";
             this.run.Size = new System.Drawing.Size(131, 25);
             this.run.TabIndex = 7;
             this.run.Text = "Ausführen";
             this.run.UseVisualStyleBackColor = true;
             // 
-            // menuStrip1
+            // statusStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.configurationOpen});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(631, 24);
-            this.menuStrip1.TabIndex = 8;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // configurationOpen
-            // 
-            this.configurationOpen.Name = "configurationOpen";
-            this.configurationOpen.Size = new System.Drawing.Size(90, 20);
-            this.configurationOpen.Text = "Einstellungen";
-            this.configurationOpen.Click += new System.EventHandler(this.configurationOpen_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.progressBarLabel,
-            this.progressBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 266);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(631, 22);
-            this.statusStrip1.TabIndex = 9;
-            this.statusStrip1.Text = "statusStrip1";
+            this.progressBar,
+            this.mysqlNotFoundLabel});
+            this.statusStrip.Location = new System.Drawing.Point(0, 242);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(631, 22);
+            this.statusStrip.TabIndex = 9;
+            this.statusStrip.Text = "statusStrip";
+            this.statusStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip_ItemClicked);
             // 
             // progressBarLabel
             // 
@@ -335,21 +318,28 @@
             this.progressBar.Size = new System.Drawing.Size(100, 16);
             this.progressBar.Visible = false;
             // 
+            // mysqlNotFoundLabel
+            // 
+            this.mysqlNotFoundLabel.ForeColor = System.Drawing.Color.Red;
+            this.mysqlNotFoundLabel.Name = "mysqlNotFoundLabel";
+            this.mysqlNotFoundLabel.Size = new System.Drawing.Size(500, 17);
+            this.mysqlNotFoundLabel.Text = "Achtung : mysql.exe konnte in der Path Variable nicht gefunden werden, bitte manu" +
+    "ell setzen!";
+            this.mysqlNotFoundLabel.Visible = false;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 288);
-            this.Controls.Add(this.statusStrip1);
+            this.ClientSize = new System.Drawing.Size(631, 264);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.run);
             this.Controls.Add(this.create);
             this.Controls.Add(this.fileGroup);
             this.Controls.Add(this.dbGroup);
-            this.Controls.Add(this.menuStrip1);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -358,10 +348,8 @@
             this.dbGroup.ResumeLayout(false);
             this.dbGroup.PerformLayout();
             this.fileGroup.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,11 +380,10 @@
         private System.Windows.Forms.Button saveConnection;
         private System.Windows.Forms.Button newConnection;
         private System.Windows.Forms.Button run;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem configurationOpen;
-        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel progressBarLabel;
         private System.Windows.Forms.ToolStripProgressBar progressBar;
+        private System.Windows.Forms.ToolStripStatusLabel mysqlNotFoundLabel;
 
     }
 }

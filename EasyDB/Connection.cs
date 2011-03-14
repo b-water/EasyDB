@@ -14,10 +14,10 @@ namespace EasyDB
     {
         private static Connection instance;
         ProgramFile ProgramFile = ProgramFile.Instance;
-        SystemVariables SystemVariables = SystemVariables.Instance;
+        //SystemVariables SystemVariables = SystemVariables.Instance;
+        Configuration config = Configuration.Instance;
         private Hashtable connections;
         private const string KEY = "qlawe781-23adw-42-?23";
-        private string _directory = null;
 
         private Connection() { }
 
@@ -35,9 +35,9 @@ namespace EasyDB
 
         public void save(string host, string user, string password, string database, string name)
         {
-            if (!File.Exists(this.SystemVariables.getEasyDBAppDataPath() + this._directory + name + ".xml"))
+            if (!File.Exists(config.get("Connection Directory") + @"\" + name + ".xml"))
             {
-                string file = this.SystemVariables.getEasyDBAppDataPath() + this._directory + name + ".xml";
+                string file = config.get("Connection Directory") + @"\" + name + ".xml";
                 XmlTextWriter xml = new XmlTextWriter(file, null);
 
                 xml.Formatting = Formatting.Indented;
@@ -82,7 +82,7 @@ namespace EasyDB
 
         public void loadAll()
         {
-            ProgramFile.ReadDir(this.SystemVariables.getEasyDBAppDataPath() + this._directory, true, "XML", true);
+            ProgramFile.ReadDir(config.get("Connection Directory") + @"\", true, "XML", true);
             this.connections = ProgramFile.GetXMLHashtable();
         }
 
@@ -91,22 +91,5 @@ namespace EasyDB
             return this.connections;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string directory
-        {
-            get
-            {
-                return this._directory;
-            }
-
-            set
-            {
-                this._directory = @"\";
-                this._directory += value;
-                this._directory += @"\";
-            }
-        }
     }
 }

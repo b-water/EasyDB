@@ -10,4 +10,3 @@ D:\Entwicklung\EasyDB\EasyDB\obj\x86\Debug\EasyDB.pdb
 D:\Entwicklung\EasyDB\EasyDB\obj\x86\Debug\EasyDB.MainWindow.de-DE.resources
 D:\Entwicklung\EasyDB\EasyDB\bin\Debug\de-DE\EasyDB.resources.dll
 D:\Entwicklung\EasyDB\EasyDB\obj\x86\Debug\de-DE\EasyDB.resources.dll
-D:\Entwicklung\EasyDB\EasyDB\obj\x86\Debug\EasyDB.ConfigWindow.resources

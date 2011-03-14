@@ -31,6 +31,7 @@ namespace EasyDB
 
         public bool ReadDir(string dir, bool validate, string fileType, bool cut)
         {
+            Console.WriteLine(dir);
 
             if(Directory.Exists(dir))
             {

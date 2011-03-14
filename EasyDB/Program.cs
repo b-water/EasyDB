@@ -24,9 +24,10 @@ namespace EasyDB
 
             Configuration config = Configuration.Instance;
             config.set("Roaming", System.Environment.GetEnvironmentVariable("APPDATA"));
-            config.set("Application", "EasyDB");
-            config.set("Connection Directory", "connection");
-            config.set("Batch Directory","batch");
+            config.set("Path", System.Environment.GetEnvironmentVariable("Path"));
+            config.set("Application", config.get("Roaming") + @"\EasyDB\");
+            config.set("Connection Directory", config.get("Application") + @"connection\");
+            config.set("Batch Directory", config.get("Application") + @"batch\");
 
             string[] subFolders = new String[2];
             subFolders[0] = config.get("Batch Directory");
@@ -34,8 +35,18 @@ namespace EasyDB
 
             Roaming roaming = new Roaming();
             roaming.pathToRoamingDirectory = config.get("Roaming");
-            roaming.folderName = config.get("Application");
+            roaming.folderName = "EasyDB";
             config.set("Application Directory",roaming.createIfNotExists(subFolders));
+
+            MySQL mysql = new MySQL();
+            if (mysql.searchPathVariable())
+            {
+                config.set("MySQL", mysql.location);
+            }
+            else
+            {
+                MessageBox.Show("Pfad zur mysql.exe wurde nicht in der Path Variable gefunden!");
+            }
 
             //System.Diagnostics.Process.Start(Environment.GetEnvironmentVariable("MySQL"), " --user=dbadmin --password=1234 testdb < D:\\dumps\\movie.sql");
             //System.Diagnostics.Process.EnterDebugMode();
