@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Diagnostics;
 
 namespace EasyDB
 {
@@ -25,14 +26,15 @@ namespace EasyDB
         /// <summary>
         /// The Constructor
         /// </summary>
-        public Batch () 
+        public Batch (string batchDirectory) 
         {
+            this._batchDirectory = batchDirectory;
             // alle bisherigen batch dateien löschen
-             string[] batchFiles = Directory.GetFiles(this.batchDirectory);
-             foreach (string batch in batchFiles)
-             {
-                 File.Delete(batch);
-             }
+            string[] batchFiles = Directory.GetFiles(this._batchDirectory);
+            foreach (string batch in batchFiles)
+            {
+                File.Delete(batch);
+            }
         }
 
         public bool create(string sqlFile, string name, int index)
@@ -57,6 +59,18 @@ namespace EasyDB
             {
                 return true;
             }
+        }
+
+        public void execute(string file)
+        {
+            Process process = new Process();
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.FileName = file;
+            Console.WriteLine(file);
+            process.Start();
+            process.WaitForExit();
         }
 
         /// <summary>

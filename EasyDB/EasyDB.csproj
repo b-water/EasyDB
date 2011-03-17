@@ -64,7 +64,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roaming.cs" />
     <Compile Include="RoamingException.cs" />
-    <Compile Include="SystemVariables.cs" />
     <EmbeddedResource Include="MainWindow.de-DE.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>

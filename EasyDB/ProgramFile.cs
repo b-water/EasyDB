@@ -12,6 +12,7 @@ namespace EasyDB
         private static ProgramFile instance;
         Hashtable SQLFiles = new Hashtable();
         Hashtable XMLFiles = new Hashtable();
+        Hashtable BATFiles = new Hashtable();
 
         private ProgramFile () {}
 
@@ -31,8 +32,6 @@ namespace EasyDB
 
         public bool ReadDir(string dir, bool validate, string fileType, bool cut)
         {
-            Console.WriteLine(dir);
-
             if(Directory.Exists(dir))
             {
                 this.clear(fileType);

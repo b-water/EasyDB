@@ -19,8 +19,6 @@ namespace EasyDB
         private Hashtable connections;
         private const string KEY = "qlawe781-23adw-42-?23";
 
-        private Connection() { }
-
         public static Connection Instance
         {
             get
@@ -31,6 +29,12 @@ namespace EasyDB
                 }
                 return instance;
             }
+        }
+
+        private Connection()
+        {
+
+
         }
 
         public void save(string host, string user, string password, string database, string name)

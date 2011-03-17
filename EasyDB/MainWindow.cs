@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using System.Diagnostics;
+using System.Threading;
 
 namespace EasyDB
 {
@@ -135,18 +138,18 @@ namespace EasyDB
             }
             else
             {
-                Batch batch = new Batch();
+                Batch batch = new Batch(config.get("Batch Directory"));
                 batch.host = host.Text.ToString();
                 batch.user = user.Text.ToString();
                 batch.password = password.Text.ToString();
                 batch.database = database.Text.ToString();
                 batch.mysql = config.get("MySQL");
-                batch.batchDirectory = config.get("Batch Directory");
 
                 if (!this.checkedListBox.Items.Count.Equals(0))
                 {
                     Hashtable sqlFiles = ProgramFile.GetSQLHashtable();
 
+                    int countBatchFiles = 0;
 
                     for (int i = 0; i <= this.checkedListBox.Items.Count - 1; i++)
                     {
@@ -158,11 +161,14 @@ namespace EasyDB
                                 if (file.Value.ToString().Equals(this.checkedListBox.Items[i].ToString()))
                                 {
                                     batch.create(file.Key.ToString(), file.Value.ToString(), i);
+                                    countBatchFiles++;
                                     break;
                                 }
                             }
                         }
                     }
+                    MessageBox.Show("Es wurden " + countBatchFiles + " Batch Dateien erstellt!");
+                    run.Enabled = true;
                 }
                 else
                 {
@@ -239,6 +245,40 @@ namespace EasyDB
             }
         }
 
+        private void run_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Neuer Threas");
+            progressBarLabel.Visible = true;
+            progressBar.Visible = true;
+            progressBar.ProgressBar.Style = ProgressBarStyle.Marquee;
+            new Thread(this.executeInvoke).Start();
+            Console.WriteLine("test");
+        }
+
+        private void executeInvoke()
+        {
+            Console.WriteLine("Invoke gestartet!");
+
+            string[] batchFiles = Directory.GetFiles(config.get("Batch Directory"));
+
+            foreach (string file in batchFiles)
+            {
+                this.execute(file);
+            }
+            MessageBox.Show("Alle Batch Dateien wurden ausgeführt!");
+        }
+
+        private void execute(string file)
+        {
+            Console.WriteLine("Execute gestartet!");
+            Process process = new Process();
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.FileName = file;
+            process.Start();
+            process.WaitForExit();
+        }
 
     }
 }
