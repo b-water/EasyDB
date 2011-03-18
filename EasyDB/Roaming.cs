@@ -72,7 +72,7 @@ namespace EasyDB
                     Directory.CreateDirectory(directory);
                     foreach (string folder in subFolders)
                     {
-                        Directory.CreateDirectory(directory + @"\" + folder);
+                        Directory.CreateDirectory(directory + @"\" + this.folderName);
                     }
                 }
 
