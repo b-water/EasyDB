@@ -53,7 +53,6 @@ namespace EasyDB
             if (!File.Exists(batchFile))
             {
                 throw new BatchException("(#1) : Coud not create Batch File!");
-                return false;
             }
             else
             {

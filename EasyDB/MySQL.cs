@@ -27,7 +27,6 @@ namespace EasyDB
                 {
                     if (pathEntry.Contains("mysql.exe"))
                     {
-                        Console.WriteLine(pathEntry);
                         this._location = pathEntry;
                     }
                 }

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Threading;
+using Microsoft.Win32;
 
 namespace EasyDB
 {
@@ -155,7 +156,6 @@ namespace EasyDB
                     {
                         if (this.checkedListBox.GetItemChecked(i))
                         {
-                            //Console.WriteLine(this.checkedListBox.Items[i]);
                             foreach (DictionaryEntry file in sqlFiles)
                             {
                                 if (file.Value.ToString().Equals(this.checkedListBox.Items[i].ToString()))
@@ -181,7 +181,6 @@ namespace EasyDB
 
         private void newConnection_Click(object sender, EventArgs e)
         {
-            //connections.Items.Insert(0,"Neue Verbindung");
             connections.SelectedIndex = 0;
             host.Text = "";
             user.Text = "";
@@ -247,30 +246,25 @@ namespace EasyDB
 
         private void run_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Neuer Threas");
-            progressBarLabel.Visible = true;
             progressBar.Visible = true;
             progressBar.ProgressBar.Style = ProgressBarStyle.Marquee;
             new Thread(this.executeInvoke).Start();
-            Console.WriteLine("test");
         }
 
         private void executeInvoke()
         {
-            Console.WriteLine("Invoke gestartet!");
-
             string[] batchFiles = Directory.GetFiles(config.get("Batch Directory"));
 
             foreach (string file in batchFiles)
             {
                 this.execute(file);
             }
+
             MessageBox.Show("Alle Batch Dateien wurden ausgeführt!");
         }
 
         private void execute(string file)
         {
-            Console.WriteLine("Execute gestartet!");
             Process process = new Process();
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
@@ -279,6 +273,5 @@ namespace EasyDB
             process.Start();
             process.WaitForExit();
         }
-
     }
 }

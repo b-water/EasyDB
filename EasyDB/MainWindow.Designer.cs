@@ -56,7 +56,6 @@
             this.progressBarLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.progressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.mysqlNotFoundLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.odbcOpen = new System.Windows.Forms.Button();
             this.dbGroup.SuspendLayout();
             this.fileGroup.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -76,7 +75,6 @@
             // 
             // dbGroup
             // 
-            this.dbGroup.Controls.Add(this.odbcOpen);
             this.dbGroup.Controls.Add(this.label5);
             this.dbGroup.Controls.Add(this.name);
             this.dbGroup.Controls.Add(this.saveConnection);
@@ -92,7 +90,7 @@
             this.dbGroup.Controls.Add(this.host);
             this.dbGroup.Location = new System.Drawing.Point(354, 11);
             this.dbGroup.Name = "dbGroup";
-            this.dbGroup.Size = new System.Drawing.Size(268, 221);
+            this.dbGroup.Size = new System.Drawing.Size(268, 189);
             this.dbGroup.TabIndex = 4;
             this.dbGroup.TabStop = false;
             this.dbGroup.Text = "Datenbank-Einstellungen";
@@ -101,7 +99,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 193);
+            this.label5.Location = new System.Drawing.Point(9, 160);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 13);
             this.label5.TabIndex = 11;
@@ -109,7 +107,7 @@
             // 
             // name
             // 
-            this.name.Location = new System.Drawing.Point(72, 191);
+            this.name.Location = new System.Drawing.Point(72, 158);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(109, 20);
             this.name.TabIndex = 60;
@@ -118,7 +116,7 @@
             // saveConnection
             // 
             this.saveConnection.Enabled = false;
-            this.saveConnection.Location = new System.Drawing.Point(186, 189);
+            this.saveConnection.Location = new System.Drawing.Point(186, 156);
             this.saveConnection.Name = "saveConnection";
             this.saveConnection.Size = new System.Drawing.Size(75, 23);
             this.saveConnection.TabIndex = 70;
@@ -128,7 +126,7 @@
             // 
             // newConnection
             // 
-            this.newConnection.Location = new System.Drawing.Point(10, 50);
+            this.newConnection.Location = new System.Drawing.Point(10, 17);
             this.newConnection.Name = "newConnection";
             this.newConnection.Size = new System.Drawing.Size(56, 23);
             this.newConnection.TabIndex = 30;
@@ -140,7 +138,7 @@
             // 
             this.connections.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.connections.FormattingEnabled = true;
-            this.connections.Location = new System.Drawing.Point(72, 52);
+            this.connections.Location = new System.Drawing.Point(72, 19);
             this.connections.Name = "connections";
             this.connections.Size = new System.Drawing.Size(189, 21);
             this.connections.TabIndex = 35;
@@ -148,7 +146,7 @@
             // 
             // database
             // 
-            this.database.Location = new System.Drawing.Point(72, 163);
+            this.database.Location = new System.Drawing.Point(72, 130);
             this.database.Name = "database";
             this.database.Size = new System.Drawing.Size(190, 20);
             this.database.TabIndex = 55;
@@ -157,7 +155,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 166);
+            this.label4.Location = new System.Drawing.Point(8, 133);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 6;
@@ -166,7 +164,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 138);
+            this.label3.Location = new System.Drawing.Point(8, 105);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 5;
@@ -175,7 +173,7 @@
             // 
             // password
             // 
-            this.password.Location = new System.Drawing.Point(72, 134);
+            this.password.Location = new System.Drawing.Point(72, 101);
             this.password.Name = "password";
             this.password.Size = new System.Drawing.Size(190, 20);
             this.password.TabIndex = 50;
@@ -184,7 +182,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 111);
+            this.label2.Location = new System.Drawing.Point(8, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 3;
@@ -193,7 +191,7 @@
             // 
             // user
             // 
-            this.user.Location = new System.Drawing.Point(72, 107);
+            this.user.Location = new System.Drawing.Point(72, 74);
             this.user.Name = "user";
             this.user.Size = new System.Drawing.Size(190, 20);
             this.user.TabIndex = 45;
@@ -202,7 +200,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 83);
+            this.label1.Location = new System.Drawing.Point(8, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 1;
@@ -211,7 +209,7 @@
             // host
             // 
             this.host.BackColor = System.Drawing.Color.White;
-            this.host.Location = new System.Drawing.Point(72, 80);
+            this.host.Location = new System.Drawing.Point(72, 47);
             this.host.Name = "host";
             this.host.Size = new System.Drawing.Size(190, 20);
             this.host.TabIndex = 40;
@@ -276,7 +274,7 @@
             // 
             // create
             // 
-            this.create.Location = new System.Drawing.Point(354, 238);
+            this.create.Location = new System.Drawing.Point(354, 205);
             this.create.Name = "create";
             this.create.Size = new System.Drawing.Size(128, 25);
             this.create.TabIndex = 75;
@@ -287,7 +285,7 @@
             // run
             // 
             this.run.Enabled = false;
-            this.run.Location = new System.Drawing.Point(488, 239);
+            this.run.Location = new System.Drawing.Point(488, 206);
             this.run.Name = "run";
             this.run.Size = new System.Drawing.Size(131, 25);
             this.run.TabIndex = 80;
@@ -301,7 +299,7 @@
             this.progressBarLabel,
             this.progressBar,
             this.mysqlNotFoundLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 269);
+            this.statusStrip.Location = new System.Drawing.Point(0, 244);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(631, 22);
             this.statusStrip.TabIndex = 9;
@@ -330,20 +328,11 @@
     "ell setzen!";
             this.mysqlNotFoundLabel.Visible = false;
             // 
-            // odbcOpen
-            // 
-            this.odbcOpen.Location = new System.Drawing.Point(11, 21);
-            this.odbcOpen.Name = "odbcOpen";
-            this.odbcOpen.Size = new System.Drawing.Size(251, 23);
-            this.odbcOpen.TabIndex = 25;
-            this.odbcOpen.Text = "ODBC Verbindung benuten";
-            this.odbcOpen.UseVisualStyleBackColor = true;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 291);
+            this.ClientSize = new System.Drawing.Size(631, 266);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.run);
             this.Controls.Add(this.create);
@@ -396,7 +385,6 @@
         private System.Windows.Forms.ToolStripStatusLabel progressBarLabel;
         private System.Windows.Forms.ToolStripProgressBar progressBar;
         private System.Windows.Forms.ToolStripStatusLabel mysqlNotFoundLabel;
-        private System.Windows.Forms.Button odbcOpen;
 
     }
 }
